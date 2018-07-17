@@ -42,6 +42,8 @@
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset("plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Morris.js charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="{{ asset("plugins/morris/morris.min.js") }}"></script>
@@ -78,8 +80,10 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('home') }}" class="nav-link">Home</a>
             </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('logout') }}" class="nav-link">{{ __('Logout') }}</a>
+            </li>
         </ul>
-
     </nav>
     <!-- /.navbar -->
 
@@ -87,7 +91,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="{{ url('home') }}" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img src="{{ asset("dist/img/AdminLTELogo.png") }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">Titip.yuk</span>
         </a>
@@ -97,10 +101,10 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="{{ asset("dist/img/user2-160x160.jpg") }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                    {{--<a href="#" class="d-block">{{ Auth::user()->name }}</a>--}}
                 </div>
             </div>
 
@@ -481,6 +485,22 @@
 </div>
 <!-- ./wrapper -->
 
+<script>
+    function logout() {
+        swal({
+            title: "Yakin Ingin Keluar ?",
+            text: "Apakah Kamu Yakin Ingin Keluar Dari Halaman Ini ??",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then(willLogout => {
+                if (willLogout) {
+                    location.href = `{{ route('logout') }}`;
+                }
+            });
+
+    }
+</script>
 
 {{--<div id="app">--}}
 {{--<nav class="navbar navbar-expand-md navbar-light navbar-laravel">--}}
