@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('goods_id')->unsigned();
             $table->integer('payment_methods_id')->unsigned();
+            $table->integer('total_goods');
+            $table->integer('total_price');
             $table->string('notes');
             $table->decimal('long', 10, 7);
             $table->decimal('lat', 10, 7);

@@ -19,6 +19,7 @@ class CreateGoodsTable extends Migration
             $table->integer('brand_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->string('description');
+            $table->integer('price');
             $table->timestamps();
 
             $table->foreign('brand_id')
