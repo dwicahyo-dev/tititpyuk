@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('goods_id')->unsigned();
+            $table->integer('payment_methods_id')->unsigned();
             $table->string('notes');
             $table->decimal('long', 10, 7);
             $table->decimal('lat', 10, 7);
@@ -25,6 +26,11 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+
+//            $table->foreign('payment_methods_id')
+//                ->references('id')->on('payment_methods')
+//                ->onDelete('cascade');
+
 
 //            $table->foreign('goods_id')
 //                ->references('id')->on('goods')
@@ -42,5 +48,6 @@ class CreateOrdersTable extends Migration
         Schema::dropIfExists('orders');
         Schema::dropIfExists('users');
         Schema::dropIfExists('goods');
+        Schema::dropIfExists('payment_methods');
     }
 }
